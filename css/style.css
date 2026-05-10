@@ -48,6 +48,7 @@ text-align: center;
 }
 .btn-primary {
 background: linear-gradient(135deg, #38BDF8, #0EA5E9);
+width: 101.5%;
 color: #FFFFFF;
 box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
 }
