@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat réussi - Gestion Licences</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- PAGE 5 : Achat réussi + clé générée        -->
+    <!-- ========================================== -->
+
+    <main class="success-main">
+        <div class="success-card glass">
+
+            <!-- Icône succès -->
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+
+            <h2>Paiement confirmé !</h2>
+            <p class="success-message">Votre licence a été générée avec succès.</p>
+
+            <!-- Informations de la licence (injectées par PHP) -->
+            <div class="license-info" id="license-info">
+                <!-- Rempli via PHP après l'achat -->
+            </div>
+
+            <!-- Boutons d'action -->
+            <div class="success-actions">
+                <button class="btn btn-primary" onclick="copyKey()">📋 Copier la clé</button>
+                <a href="mes-licences.html" class="btn btn-outline">Aller à mes licences</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Récupérer la clé depuis l'URL (passée par PHP après achat)
+        const key = new URLSearchParams(window.location.search).get('key');
+        const logiciel = new URLSearchParams(window.location.search).get('logiciel');
+        const expiration = new URLSearchParams(window.location.search).get('expiration');
+        const activations = new URLSearchParams(window.location.search).get('activations');
+
+        if (key) {
+            document.getElementById('license-info').innerHTML = `
+                <div class="license-detail">
+                    <p><strong>Logiciel :</strong> ${logiciel || '—'}</p>
+                    <p><strong>Clé de licence :</strong></p>
+                    <div class="license-key">${key}</div>
+                    <p><strong>Date d'expiration :</strong> ${expiration || '—'}</p>
+                    <p><strong>Activation(s) autorisée(s) :</strong> ${activations || '—'}</p>
+                </div>
+            `;
+        } else {
+            document.getElementById('license-info').innerHTML = '<p>Aucune licence trouvée.</p>';
+        }
+
+        function copyKey() {
+            if (key) {
+                navigator.clipboard.writeText(key).then(() => {
+                    alert('Clé copiée dans le presse-papiers !');
+                });
+            }
+        }
+    </script>
+</body>
+</html>

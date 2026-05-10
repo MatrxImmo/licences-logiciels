@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activation de licence - Gestion Licences</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- PAGE 7 : Activation de licence             -->
+    <!-- ========================================== -->
+
+    <header class="header glass">
+        <div class="header-logo"><i class="fas fa-key"></i> LicenceFlow</div>
+        <div class="header-actions">
+            <a href="mes-licences.html" class="btn btn-outline">← Mes licences</a>
+        </div>
+    </header>
+
+    <main class="activation-main">
+        <div class="activation-card glass">
+
+            <h2>Activer une licence</h2>
+            <p>Entrez votre clé de licence et le nom de l'appareil.</p>
+
+            <form id="activation-form" action="php/activer_licence.php" method="POST">
+                <div class="form-group">
+                    <label for="license-key">Clé de licence</label>
+                    <input type="text" id="license-key" name="cle" placeholder="ABCD-1234-EFGH" required>
+                </div>
+                <div class="form-group">
+                    <label for="device-name">Nom de l'appareil</label>
+                    <input type="text" id="device-name" name="nom_appareil" placeholder="PC Bureau, Laptop Personnel..." required>
+                    <small>Donnez un nom à votre appareil pour le reconnaître facilement.</small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Activer</button>
+            </form>
+
+            <!-- Message de retour -->
+            <div id="activation-message" class="activation-message"></div>
+
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

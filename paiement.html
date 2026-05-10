@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - Gestion Licences</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- PAGE 4 : Paiement                          -->
+    <!-- ========================================== -->
+
+    <header class="header glass">
+        <div class="header-logo"><i class="fas fa-key"></i> LicenceFlow</div>
+        <div class="header-actions">
+            <a href="catalogue.html" class="btn btn-outline">← Annuler</a>
+        </div>
+    </header>
+
+    <main class="payment-main">
+        <div class="payment-card glass">
+
+            <h2>Finaliser votre achat</h2>
+
+            <!-- Résumé de la commande (rempli par PHP) -->
+            <div class="order-summary" id="order-summary">
+                <!-- Injecté via PHP -->
+            </div>
+
+            <!-- Formulaire de paiement simulé -->
+            <form id="payment-form" action="php/acheter.php" method="POST">
+                <!-- Champ caché pour l'ID du logiciel -->
+                <input type="hidden" name="logiciel_id" id="logiciel-id-input">
+
+                <div class="form-group">
+                    <label for="card-name">Nom sur la carte</label>
+                    <input type="text" id="card-name" name="card_name" placeholder="Jean Dupont" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Numéro de carte</label>
+                    <input type="text" id="card-number" name="card_number" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="card-expiry">Date d'expiration</label>
+                        <input type="text" id="card-expiry" name="card_expiry" placeholder="MM/AA" maxlength="5" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="card-cvv">CVV</label>
+                        <input type="text" id="card-cvv" name="card_cvv" placeholder="123" maxlength="3" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Confirmer le paiement</button>
+            </form>
+
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Récupérer l'ID du logiciel depuis l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const logicielId = urlParams.get('id');
+        if (logicielId) {
+            document.getElementById('logiciel-id-input').value = logicielId;
+            // Charger le résumé de la commande
+            fetch('php/detail.php?id=' + logicielId)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('order-summary').innerHTML = data;
+                });
+        }
+    </script>
+</body>
+</html>

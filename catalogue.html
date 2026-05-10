@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue - Gestion Licences</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ========================================== -->
+    <!-- PAGE 2 : Catalogue des logiciels           -->
+    <!-- ========================================== -->
+
+    <!-- Header -->
+    <header class="header glass">
+        <div class="header-logo"><i class="fas fa-key"></i> LicenceFlow</div>
+        <div class="header-search">
+            <input type="text" id="search-bar" placeholder="Rechercher un logiciel..." onkeyup="filterCatalog()">
+        </div>
+        <div class="header-actions">
+            <a href="mes-licences.html" class="btn btn-outline">Mes licences</a>
+            <a href="php/logout.php" class="btn btn-icon" title="Déconnexion"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </header>
+
+    <!-- Section principale : grille des logiciels -->
+    <main class="catalog-main">
+        <h2 class="section-title">Logiciels disponibles</h2>
+        <div class="catalog-grid" id="catalog-grid">
+            <!-- Les cartes sont générées par PHP -->
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // Charger le catalogue via PHP au chargement de la page
+        window.onload = function() {
+            fetch('php/catalogue.php')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('catalog-grid').innerHTML = data;
+                });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion - Gestion Licences</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts : Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="auth-body">
+
+    <!-- ========================================== -->
+    <!-- PAGE 1 : Connexion / Inscription           -->
+    <!-- ========================================== -->
+
+    <div class="auth-container">
+
+        <!-- Carte glassmorphism centrale -->
+        <div class="auth-card glass">
+
+            <!-- Logo / Titre -->
+            <div class="auth-header">
+                <div class="auth-logo"><i class="fas fa-lock"></i></div>
+                <h1>Gestion de Licences</h1>
+                <p>Connectez-vous ou créez votre compte</p>
+            </div>
+
+            <!-- Onglets Connexion / Inscription -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" onclick="showTab('login')">Connexion</button>
+                <button class="tab-btn" onclick="showTab('register')">Inscription</button>
+            </div>
+
+            <!-- Formulaire de CONNEXION -->
+            <form id="login-form" class="auth-form active-form" action="php/login.php" method="POST">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" placeholder="exemple@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Mot de passe</label>
+                    <input type="password" id="login-password" name="mot_de_passe" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Se connecter</button>
+                <p class="forgot-password"><a href="#">Mot de passe oublié ?</a></p>
+            </form>
+
+            <!-- Formulaire d'INSCRIPTION -->
+            <form id="register-form" class="auth-form" action="php/register.php" method="POST">
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="reg-nom">Nom</label>
+                        <input type="text" id="reg-nom" name="nom" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="reg-prenom">Prénom</label>
+                        <input type="text" id="reg-prenom" name="prenom" placeholder="Votre prénom" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="reg-telephone">Numéro de téléphone</label>
+                    <input type="tel" id="reg-telephone" name="telephone" placeholder="+33 6 12 34 56 78" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">Email</label>
+                    <input type="email" id="reg-email" name="email" placeholder="exemple@email.com" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group half">
+                        <label for="reg-password">Mot de passe</label>
+                        <input type="password" id="reg-password" name="mot_de_passe" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group half">
+                        <label for="reg-confirm">Confirmer le mot de passe</label>
+                        <input type="password" id="reg-confirm" name="confirm" placeholder="••••••••" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Créer mon compte</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
